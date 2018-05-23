@@ -233,16 +233,21 @@ var PrincipalComponent = /** @class */ (function () {
     PrincipalComponent.prototype.agregar = function () {
         this.cheques.push(new _cheque__WEBPACK_IMPORTED_MODULE_1__["Cheque"](this.importe, this.interes, this.gastos));
         this.calcularTotal();
+        console.log(this.cheques);
     };
     PrincipalComponent.prototype.calcularTotal = function () {
         var _this = this;
         var total = 0;
+        this.superCheque.importe = 0;
+        this.superCheque.interes = 0;
+        this.superCheque.gastos = 0;
         this.cheques.forEach(function (element) {
             _this.superCheque.importe += +element.importe;
             _this.superCheque.interes += +element.interes;
             _this.superCheque.gastos += +element.gastos;
             _this.superCheque.iva += +element.iva;
         });
+        console.log(this.superCheque);
     };
     PrincipalComponent = __decorate([
         Object(_angular_core__WEBPACK_IMPORTED_MODULE_0__["Component"])({
