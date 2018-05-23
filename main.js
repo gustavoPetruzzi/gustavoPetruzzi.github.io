@@ -164,12 +164,12 @@ var Cheque = /** @class */ (function () {
         this.importe = importe;
         this.interes = interes;
         this.gastos = gastos;
-        this.iva = (+this.interes + +this.gastos) * 0.21;
+        this.iva = parseFloat(((+this.interes + +this.gastos) * 0.21).toFixed(2));
     }
     Cheque.prototype.calcular = function () {
         var total = 0;
-        total = this.importe - this.gastos - this.iva;
-        return total;
+        total = this.importe - this.interes - this.gastos - this.iva;
+        return parseFloat(total.toFixed(2));
     };
     return Cheque;
 }());
