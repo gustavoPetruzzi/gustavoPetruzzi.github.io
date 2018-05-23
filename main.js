@@ -160,10 +160,11 @@ var AppModule = /** @class */ (function () {
 __webpack_require__.r(__webpack_exports__);
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "Cheque", function() { return Cheque; });
 var Cheque = /** @class */ (function () {
-    function Cheque(importe, gastos, iva) {
+    function Cheque(importe, interes, gastos) {
         this.importe = importe;
+        this.interes = interes;
         this.gastos = gastos;
-        this.iva = iva;
+        this.iva = (+this.interes + +this.gastos) * 0.21;
     }
     Cheque.prototype.calcular = function () {
         var total = 0;
@@ -195,7 +196,7 @@ module.exports = ".example-container {\n  display: flex;\n  flex-direction: colu
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-module.exports = "<mat-grid-list cols=\"4\">\n  <mat-grid-tile>\n    <div class=\"example-container\">\n      <mat-form-field>\n        <input matInput placeholder=\"Importe\" [(ngModel)]=\"importe\" >\n      </mat-form-field>\n      <mat-form-field>\n        <input matInput placeholder=\"Gastos\" [(ngModel)]=\"gastos\" >\n      </mat-form-field>\n      <mat-form-field>\n        <input matInput placeholder=\"Iva\" [(ngModel)]=\"iva\" >\n      </mat-form-field>\n      <button mat-button color=\"primary\" (click)=\"agregar()\">Agregar</button>\n    </div>\n  </mat-grid-tile>\n  <mat-grid-tile colspan=\"3\">\n    <table>\n      <tr>\n        <th> Importe </th>\n        <th> Gastos </th>\n        <th> Iva </th>\n        <th> Total </th>\n      </tr>\n      <tr *ngFor=\"let cheque of cheques\">\n        <td>{{ cheque.importe }}</td>\n        <td>{{ cheque.gastos }}</td>\n        <td>{{ cheque.iva }}</td>\n        <td>{{ cheque.calcular() }}</td>\n      </tr>\n    </table>\n  </mat-grid-tile>\n  <mat-grid-tile colspan=\"1\"><h1>Importe: {{ superCheque.importe }}</h1></mat-grid-tile>\n  <mat-grid-tile colspan=\"1\"><h1>Gastos: {{ superCheque.gastos }}</h1></mat-grid-tile>\n  <mat-grid-tile colspan=\"1\"><h1>Iva: {{ superCheque.iva }}</h1></mat-grid-tile>\n  <mat-grid-tile colspan=\"1\"><h1>Total: {{ superCheque.calcular() }}</h1></mat-grid-tile>\n</mat-grid-list>\n"
+module.exports = "<mat-grid-list cols=\"5\">\n  <mat-grid-tile>\n    <div class=\"example-container\">\n      <mat-form-field>\n        <input matInput placeholder=\"Importe\" [(ngModel)]=\"importe\" >\n      </mat-form-field>\n      <mat-form-field>\n        <input matInput placeholder=\"Interes\" [(ngModel)]=\"interes\" >\n      </mat-form-field>\n      <mat-form-field>\n        <input matInput placeholder=\"Gastos\" [(ngModel)]=\"gastos\" >\n      </mat-form-field>\n      <button mat-button color=\"primary\" (click)=\"agregar()\">Agregar</button>\n    </div>\n  </mat-grid-tile>\n  <mat-grid-tile colspan=\"4\">\n    <table>\n      <tr>\n        <th> Importe </th>\n        <th> Interes </th>\n        <th> Gastos </th>\n        <th> Iva </th>\n        <th> Total </th>\n      </tr>\n      <tr *ngFor=\"let cheque of cheques\">\n        <td>{{ cheque.importe }}</td>\n        <td> {{ cheque.interes  }} </td>\n        <td>{{ cheque.gastos }}</td>\n        <td>{{ cheque.iva }}</td>\n        <td>{{ cheque.calcular() }}</td>\n      </tr>\n    </table>\n  </mat-grid-tile>\n  <mat-grid-tile colspan=\"1\"><h2>Importe: {{ superCheque.importe }}</h2></mat-grid-tile>\n  <mat-grid-tile colspan=\"1\"><h2>Interes: {{ superCheque.interes }}</h2></mat-grid-tile>\n  <mat-grid-tile colspan=\"1\"><h2>Gastos: {{ superCheque.gastos }}</h2></mat-grid-tile>\n  <mat-grid-tile colspan=\"1\"><h2>Iva: {{ superCheque.iva }}</h2></mat-grid-tile>\n  <mat-grid-tile colspan=\"1\"><h2>Total: {{ superCheque.calcular() }}</h2></mat-grid-tile>\n</mat-grid-list>\n"
 
 /***/ }),
 
@@ -230,16 +231,17 @@ var PrincipalComponent = /** @class */ (function () {
         this.superCheque = new _cheque__WEBPACK_IMPORTED_MODULE_1__["Cheque"](0, 0, 0);
     };
     PrincipalComponent.prototype.agregar = function () {
-        this.cheques.push(new _cheque__WEBPACK_IMPORTED_MODULE_1__["Cheque"](this.importe, this.gastos, this.iva));
+        this.cheques.push(new _cheque__WEBPACK_IMPORTED_MODULE_1__["Cheque"](this.importe, this.interes, this.gastos));
         this.calcularTotal();
     };
     PrincipalComponent.prototype.calcularTotal = function () {
         var _this = this;
         var total = 0;
         this.cheques.forEach(function (element) {
-            _this.superCheque.importe += element.importe;
-            _this.superCheque.gastos += element.gastos;
-            _this.superCheque.iva += element.iva;
+            _this.superCheque.importe += +element.importe;
+            _this.superCheque.interes += +element.interes;
+            _this.superCheque.gastos += +element.gastos;
+            _this.superCheque.iva += +element.iva;
         });
     };
     PrincipalComponent = __decorate([
