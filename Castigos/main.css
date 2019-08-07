@@ -1,10 +1,4 @@
-#canvasContainer {
-    background-image: url(./wheel_back.png);
-    background-repeat: no-repeat;   /* Ensure that background does not repeat */
-    background-position: center;    /* Ensure image is centred */
-    width: 700px;                   /* Width and height should at least be the same as the canvas */
-    height: 700px;
-}
+
  
 .box{
 	display: flex;
@@ -16,7 +10,8 @@
 }
 .navbar{
 	background: black;
-	height: 10%;
+	height: 12%;
 	width: 100%;
 	
 }
+

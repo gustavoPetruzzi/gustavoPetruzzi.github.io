@@ -7,12 +7,16 @@
 	</head>
 	<body>
 		<div class="box navbar">
-			<p style="color:white;"> Ruega de castigo</p>
+			<p style="color:white; font-size: 6.5vw;"> Rueda de castigo</p>
 		</div>
 		<div class="box">
 
 			<div id="canvasContainer">
-				<canvas id="canvasCastigos" height="700" width="700">
+				<canvas id="canvasCastigos" 
+					data-responsiveMinWidth="180"
+    			data-responsiveScaleHeight="true"   /* Optional Parameters */
+    			data-responsiveMargin="50"
+				height="700" width="700">
 				</canvas>			
 			
 			</div>
@@ -33,6 +37,7 @@
 				'textFontFamily' : 'Courier',
 				'textFontSize' : 20,
 				'innerRadius' : 40,
+				'responsive' : 'true',
 				'segments' : 
 				[
 					{'fillStyle' : '#000000', 'text' : 'ROBLOX', 'textFillStyle' : '#ffffff', 'size': 30},
