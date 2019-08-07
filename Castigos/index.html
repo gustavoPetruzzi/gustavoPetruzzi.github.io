@@ -1,0 +1,61 @@
+<html>
+	<head>
+		<title> Castigos </title>
+		<script src="Winwheel.min.js"></script>
+		<script src="http://cdnjs.cloudflare.com/ajax/libs/gsap/latest/TweenMax.min.js"></script>
+		<link rel="stylesheet" type="text/css" href="main.css">
+	</head>
+	<body>
+		<div class="box navbar">
+			<p style="color:white;"> Ruega de castigo</p>
+		</div>
+		<div class="box">
+
+			<div id="canvasContainer">
+				<canvas id="canvasCastigos" height="700" width="700">
+				</canvas>			
+			
+			</div>
+		</div>
+		<div class="box">
+			<button class="item" onClick="resetearAngulo();">Spin the Wheel</button>
+		</div>
+
+		<script>
+			let wheel = new Winwheel({
+				'canvasId': 'canvasCastigos',
+				'numSegments' : 7,
+				'centerX'     : 350,    // correctly position the wheel
+    			'centerY'     : 350,
+    			'outerRadius' : 200,
+				'textOrientation': 'vertical',
+				'textAlignment': 'center',
+				'textFontFamily' : 'Courier',
+				'textFontSize' : 20,
+				'innerRadius' : 40,
+				'segments' : 
+				[
+					{'fillStyle' : '#000000', 'text' : 'ROBLOX', 'textFillStyle' : '#ffffff', 'size': 30},
+					{'fillStyle' : '#7de6ef', 'text' : 'CELU', },
+            		{'fillStyle' : '#89f26e', 'text' : 'BALCON'},
+            		{'fillStyle' : '#e7706f', 'text' : 'CONSOLA'},
+            		{'fillStyle' : '#7de6ef', 'text' : 'CELU'},
+            		{'fillStyle' : '#89f26e', 'text' : 'BALCON'},
+            		{'fillStyle' : '#e7706f', 'text' : 'CONSOLA'}
+            		
+				],
+				animation:
+				{
+					'type':'spinToStop',
+					'duration': 5,
+					'spins' : 8
+				}
+			});
+			function resetearAngulo(){
+				wheel.stopAnimation(false);
+				wheel.rotationAngle = wheel.rotationAngle % 360;
+				wheel.startAnimation();
+			}
+		</script>
+	</body>
+</html>
